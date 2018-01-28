@@ -19,11 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".AddSubActivity"
-            android:label="Add subscription"
-            android:theme="@style/AppTheme">
-        </activity>
+        <activity android:name=".AddSubActivity" />
+        <activity android:name=".SubInfoActivity"></activity>
     </application>
 
 </manifest>

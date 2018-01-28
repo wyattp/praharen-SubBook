@@ -16,15 +16,9 @@ import java.util.Date;
  */
 
 public class DateFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
-    private TextView v;
 
     public DateFragment() {
         super();
-    }
-
-    public DateFragment(TextView v) {
-        super();
-        this.v = v;
     }
 
     @Override
@@ -35,14 +29,11 @@ public class DateFragment extends DialogFragment implements DatePickerDialog.OnD
         int day = c.get(Calendar.DAY_OF_MONTH);
 
         // Return instance of DatePickerDialog
-        return new DatePickerDialog(getActivity(), this, year, month, day);
+        return new DatePickerDialog(getActivity(), (AddSubActivity)getActivity(), year, month, day);
     }
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-        // Date chosen by user
-        i1 = i1+1;
-        this.v.setText(getString(R.string.edit_sub_date_fmt, i, i1, i2));
-    }
 
+    }
 }

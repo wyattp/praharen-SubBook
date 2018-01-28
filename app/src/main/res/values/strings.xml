@@ -7,4 +7,6 @@
     <string name="edit_sub_submit">Add</string>
     <string name="edit_sub_comment">Comment</string>
     <string name="edit_sub_date_fmt">%1$d/%2$d/%3$d</string>
+    <string name="edit_sub_error">Error: Please fill %1$s.</string>
+    <string name="edit_sub_error_str_long">Error: %1$s too long</string>
 </resources>
