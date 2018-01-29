@@ -98,6 +98,12 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /*
+     * loadData()
+     *
+     * load data from FILENAME into subscription array
+     * subList
+     */
     public void loadData() {
         try {
             FileInputStream fileInputStream = openFileInput(FILENAME);
@@ -111,6 +117,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
+     * saveData()
+     *
+     * overwrite file this.FILENAME with arraylist of
+     * Subscription types
+     */
     public void saveData() {
         Gson gson = new Gson();
 
@@ -128,6 +140,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
+     * onActivityResult
+     *
+     * called on return from child activity
+     * Depending on resultCode, complete a specific
+     * action.
+     *
+     * resultCode:
+     *
+     *  0: add subscription to sublist
+     *  1: ignore returned result and intent
+     *  2: not implemented
+     *  3: delete subscription from subList in position "pos"
+     *  4: replace subscription in "pos" with "newSub"
+     *
+     *  After handling return result, overwrite file for persistent data.
+     */
     // referenced from https://stackoverflow.com/questions/26703691/android-return-object-as-a-activity-result
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         int pos;
@@ -157,6 +186,12 @@ public class MainActivity extends AppCompatActivity {
         saveData();
     }
 
+    /*
+     * addSub()
+     *
+     * wrapper for easily adding subscriptions to
+     * subList and listView.
+     */
     public void addSub(Subscription subscription) {
         this.subList.add(subscription);
         arrayAdapter.notifyDataSetChanged();

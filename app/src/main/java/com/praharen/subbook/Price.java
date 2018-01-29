@@ -7,6 +7,13 @@ import java.io.Serializable;
  * Created by wyatt on 25/01/18.
  */
 
+/*
+ * Price class:
+ *
+ * for easy printing of price types and conversion
+ * from float to int or int to float.
+ *
+ */
 public class Price implements Serializable {
 
     private float cost;
@@ -21,10 +28,19 @@ public class Price implements Serializable {
         this.cost = Float.parseFloat(cost);
     }
 
+    /*
+     * cost getter
+     * return: float cost.
+     */
     public float getCost() {
         return cost;
     }
 
+    /*
+     * cost to string
+     *
+     * return string in the form ${cost}
+     */
     public String toString() {
         return "$" + Float.toString(this.cost);
     }

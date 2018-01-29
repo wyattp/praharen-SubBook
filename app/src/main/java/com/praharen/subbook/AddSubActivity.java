@@ -16,6 +16,14 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/*
+ * Class: AddSubActivity
+ *
+ * Depending on the intent, either add a new subscription
+ * or edit an existing subscription.
+ *
+ * Give the user a easy way to input subscription details.
+ */
 public class AddSubActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private EditText subName;
@@ -65,11 +73,19 @@ public class AddSubActivity extends AppCompatActivity implements DatePickerDialo
 
     }
 
+    /* show the date picker to allow the user
+     * to easily set the date of subscription
+     */
     public void showDatePicker(View v) {
         DialogFragment newFragment = new DateFragment();
         newFragment.show(this.getFragmentManager(), "datePicker");
     }
 
+
+    /*
+     * Called when the user returns from the date picker.
+     * Set the date XML element to contain the date picked.
+     */
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
         this.date = new Date();
@@ -80,6 +96,11 @@ public class AddSubActivity extends AppCompatActivity implements DatePickerDialo
         this.datePicked = true;
     }
 
+    /*
+     * Check if the subscription details entered by the user
+     * are valid.
+     * Return: true or false
+     */
     public boolean checkValid(View view) {
 
         // name is empty
@@ -115,6 +136,11 @@ public class AddSubActivity extends AppCompatActivity implements DatePickerDialo
         return true;
     }
 
+    /*
+     * Create an instance of a subscription class
+     * with the details entered in by the user.
+     * Return to MainActivity.
+     */
     public void createSubscription(View view) {
         if (!checkValid(view)) {
             return;
@@ -138,6 +164,11 @@ public class AddSubActivity extends AppCompatActivity implements DatePickerDialo
         snackbar.show();
     }
 
+    /*
+     * Return to the MainActivity with the intent
+     * to edit or create a new subscription depending
+     * on if isEdit is set.
+     */
     public void returnToMain() {
         Intent resultIntent = new Intent();
         resultIntent.putExtra("newSub", this.subscription);
@@ -151,16 +182,19 @@ public class AddSubActivity extends AppCompatActivity implements DatePickerDialo
         finish();
     }
 
+    /* Return to previous Activity */
     public void cancel(View view) {
         Intent resultIntent = new Intent();
         setResult(1,resultIntent);
         finish();
     }
 
+    /* overload for cancel */
     public void cancel() {
         cancel(null);
     }
 
+    /* handle physical back button press: return to previous activity */
     @Override
     public void onBackPressed() {
         cancel();

@@ -15,12 +15,16 @@ import java.util.Date;
  * Created by wyatt on 24/01/18.
  */
 
+/*
+ * Date fragment for date picker
+ */
 public class DateFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
     public DateFragment() {
         super();
     }
 
+    /* return an instance of DatePickerDialog */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final Calendar c = Calendar.getInstance();
