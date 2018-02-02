@@ -2,6 +2,8 @@ package com.praharen.subbook;
 
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 /**
  * Created by wyatt on 25/01/18.
@@ -18,6 +20,7 @@ public class Price implements Serializable {
 
     private float cost;
 
+    Price () {}
     Price (float cost) {
         this.cost = cost;
     }
@@ -41,7 +44,13 @@ public class Price implements Serializable {
      *
      * return string in the form ${cost}
      */
+    // taken from https://stackoverflow.com/questions/12806278/double-decimal-formatting-in-java
     public String toString() {
-        return "$" + Float.toString(this.cost);
+        NumberFormat formatter = new DecimalFormat("$#.##");
+        return formatter.format(cost);
+    }
+
+    public void add(Price a) {
+        cost += a.getCost();
     }
 }

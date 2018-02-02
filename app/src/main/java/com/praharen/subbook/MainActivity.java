@@ -14,9 +14,12 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import org.w3c.dom.Text;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -31,6 +34,7 @@ import java.io.OutputStreamWriter;
 import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.concurrent.TimeoutException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Subscription> subList;
     private ArrayAdapter<Subscription> arrayAdapter;
+    private Price total;
+    private TextView priceDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +52,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // get text view element
+        priceDisplay = findViewById(R.id.price_display);
+
         // load data from file store in subscription list
         loadData();
+
+        // display price
+        showPrice();
 
         arrayAdapter = new ArrayAdapter<Subscription>(this, android.R.layout.simple_list_item_1, subList);
         final ListView listView = findViewById(R.id.main_listview);
@@ -183,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
                 subList.set(pos, newSub);
         }
         arrayAdapter.notifyDataSetChanged();
+        showPrice();
         saveData();
     }
 
@@ -196,6 +209,18 @@ public class MainActivity extends AppCompatActivity {
         this.subList.add(subscription);
         arrayAdapter.notifyDataSetChanged();
         saveData();
+    }
+
+    /*
+     * Calculate price and display on screen
+     */
+    public void showPrice() {
+        /* update price */
+        Price total = new Price(0);
+        for (Subscription s : subList) {
+            total.add(s.getPrice());
+        }
+        this.priceDisplay.setText(total.toString());
     }
 
 }
