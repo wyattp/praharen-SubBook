@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/wyatt/AndroidStudioProjects/SubBook/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "/home/wyatt/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/f8a32ecd9d2045b9ec93a02825b0352f/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}
